@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+In this App you can:
+- create new car by input Registration Number of the car and the car's color
+- Reserve a car by input your name and choose the date
+- Search car by Registration Number, Color, and Status
+
 ## Available Scripts
 
 In the project directory, you can run:
