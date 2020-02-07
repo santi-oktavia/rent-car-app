@@ -7,9 +7,16 @@ export default class CarList extends Component {
         super(props);
         this.state = {
             cars: this.props.carList,
-            show: false
+            show: false,
+            searchRegistrationNumber: '',
+            searchColor: '',
+            searchDate: '',
         };
         
+    }
+
+    handleChange = (field) => {
+        return evt => this.setState({ [field]: evt.target.value.substr(0,20) });
     }
 
     //function which is called the first time the component loads
@@ -51,11 +58,20 @@ export default class CarList extends Component {
   
     
     render() {      
-        const carsList = this.state.cars;
+        let carsList = this.state.cars;
+            carsList = carsList.filter((cars) => {
+                return cars.reqistrationNumber.toLowerCase().indexOf(this.state.searchRegistrationNumber.toLowerCase()) !== -1;
+            });
+            carsList = carsList.filter((cars) => {
+                return cars.color.toLowerCase().indexOf(this.state.searchColor.toLowerCase()) !== -1;
+            });
+            carsList = carsList.filter((cars) => {
+                return cars.date.indexOf(this.state.searchDate) !== -1;
+            });
         if (!this.state.cars)
             return (<p>Loading data</p>)
         return (
-            <div className="list-container">
+            <div className="table-responsive-sm list-container">
                 <h2 className="display-4">List of Car</h2>
                 <table className="table">
                     <thead>
@@ -68,6 +84,25 @@ export default class CarList extends Component {
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>
+                                <input className="form-control" type="text" value={this.state.searchRegistrationNumber}
+                                    onChange={this.handleChange("searchRegistrationNumber")}
+                                    placeholder="Search..."></input>
+                            </td>
+                            <td>
+                                <input className="form-control" type="text" value={this.state.searchColor}
+                                    onChange={this.handleChange("searchColor")}
+                                    placeholder="Search..."></input>
+                            </td>
+                            <td>
+                                <input className="form-control" type="date" value={this.state.searchDate}
+                                    onChange={this.handleChange("searchDate")}
+                                    placeholder="Search..."></input>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                         {
                             carsList.map((car, index) => {
                             return <tr key= {index}>

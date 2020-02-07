@@ -5,7 +5,7 @@ import './CSS/style.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="shadow-lg p-3 mb-5 bg-white rounded App">
       <header className="App-header">
         <h1>Rental Car Application</h1>
       </header>

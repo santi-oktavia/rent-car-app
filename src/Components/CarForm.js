@@ -66,12 +66,15 @@ export default class CarForm extends Component {
             month = today.getMonth() + 1,
             day = today.getDate();
 
-        if (month.length < 2) 
+    // console.log(month.length);
+
+        if (month < 10) 
             month = '0' + month;
-        if (day.length < 2) 
+        if (day < 10) 
             day = '0' + day;
 
-        let date=day+'-'+month+'-'+year;
+        // let date=day+'/'+month+'/'+year;
+        let date=year+'-'+month+'-'+day;
 
         return date;
     };
