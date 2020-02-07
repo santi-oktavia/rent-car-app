@@ -1,0 +1,22 @@
+.display-4 {
+    color: black;
+}
+.content {
+    text-align: left;
+    margin: 20px;
+}
+.form-container {
+    padding: 10px;
+    border: gray solid 1px;
+}
+.reserved {
+    cursor: not-allowed !important;
+    visibility: hidden;
+}
+.display-block {
+    display: block !important;
+}
+
+.display-none {
+    display: none !important;
+}

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
+import ReservationForm from './ReservationForm';
 
 export default class CarList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            cars: this.props.carList
+            cars: this.props.carList,
+            show: false
         };
         
     }
@@ -27,6 +29,25 @@ export default class CarList extends Component {
             });
         }
     }
+
+    showModal = (index) => {
+        this.setState({index: index});
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+
+    getReservationValue = (e, customer, date) => {
+        e.preventDefault();
+        if(!customer || !date){
+            alert("Please check your customer name and reservation date");
+        } else {
+            this.props.updateList(this.state.index, customer, date);
+            this.hideModal();
+        }
+    };
   
     
     render() {      
@@ -40,9 +61,10 @@ export default class CarList extends Component {
                     <thead>
                         <tr>
                             <td>Registration Number</td>
-                             <td>Color</td>
+                            <td>Color</td>
                             <td>Status</td>
                             <td>Customer</td>
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,11 +75,20 @@ export default class CarList extends Component {
                                     <td>{car.color}</td>
                                     <td>{car.status}</td>
                                     <td>{car.customer}</td>
+                                    <td>
+                                        <button type="button" 
+                                            className={["btn btn-info", car.status].join(' ')} 
+                                            onClick={() => this.showModal(index)}>
+                                            Reserve
+                                        </button>
+                                    </td>
                                 </tr>;
                             })
                         }
                     </tbody>
                 </table>
+                <ReservationForm show={this.state.show} handleClose={this.hideModal}
+                    getReservationValue={this.getReservationValue}></ReservationForm>
             </div>
         )
         

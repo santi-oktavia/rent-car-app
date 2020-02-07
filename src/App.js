@@ -1,16 +1,17 @@
 import React from 'react';
 import CarForm from './Components/CarForm';
-import CarList from './Components/CarList';
 import './App.css';
-import'bootstrap/dist/css/bootstrap.css';
+import './CSS/style.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <CarForm/>
-      <CarList/>
+        <h1>Rental Car Application</h1>
       </header>
+      <div className="content">
+        <CarForm/>
+      </div>
     </div>
   );
 }

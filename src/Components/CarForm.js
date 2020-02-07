@@ -42,11 +42,12 @@ export default class CarForm extends Component {
     checkExistingCar = (val) => {
         let cars = this.state.cars;
         let status;
-        // console.log(cars);
         if(cars.length != 0){
             for(let i = 0; i < cars.length; i++) {
+                
                 if(cars[i].reqistrationNumber == val){
                     status = true;
+                    break;
                 } else {
                     status = false;
                 }
@@ -55,7 +56,6 @@ export default class CarForm extends Component {
         else {
             status= false;
         }
-        // console.log(status);
         return status;
     };
 
@@ -71,41 +71,53 @@ export default class CarForm extends Component {
         if (day.length < 2) 
             day = '0' + day;
 
-        let date=year+'/'+month+'/'+day;
+        let date=day+'-'+month+'-'+year;
 
         return date;
+    };
+
+    updateList = (index,customer, date) => {
+        console.log(index);
+        const cars = Object.assign(this.state.cars); 
+        cars[index].status = 'reserved'; 
+        cars[index].customer = customer;
+        cars[index].date = date;
+        this.setState({ cars }); 
     };
   
     
     render() {        
         return (
-            <div className="form-container">
-                <form className="car-form" onSubmit={(e) => {this.handleSubmit(e)}}>
-                    <div className="form-group">
-                        <label htmlFor="registrationNumber">Registration Number</label>
-                        <input 
-                            type="text" 
-                            value={this.state.reqNum} 
-                            onChange={this.handleChange("reqNum")}
-                            className="form-control" 
-                            id="registrationNumber" 
-                            placeholder="Registration Number...">
-                        </input>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="color">Color</label>
-                        <input 
-                            type="text" 
-                            value={this.state.color} 
-                            onChange={this.handleChange("color")}
-                            className="form-control" 
-                            id="color" 
-                            placeholder="Color...">
-                        </input>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Create</button>
-                </form>
-                <CarList carList={this.state.cars}/>
+            <div>
+                <div className="form-container">
+                    <h2>Form Car Registration</h2>
+                    <form className="car-form" onSubmit={(e) => {this.handleSubmit(e)}}>
+                        <div className="form-group">
+                            <label htmlFor="registrationNumber">Registration Number</label>
+                            <input 
+                                type="text" 
+                                value={this.state.reqNum} 
+                                onChange={this.handleChange("reqNum")}
+                                className="form-control" 
+                                id="registrationNumber" 
+                                placeholder="Registration Number..." required>
+                            </input>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="color">Color</label>
+                            <input 
+                                type="text" 
+                                value={this.state.color} 
+                                onChange={this.handleChange("color")}
+                                className="form-control" 
+                                id="color" 
+                                placeholder="Color...">
+                            </input>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Create</button>
+                    </form>
+                </div>
+                <CarList carList={this.state.cars} updateList={this.updateList}/>
             </div>
             
         )
