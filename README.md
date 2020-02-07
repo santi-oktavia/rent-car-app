@@ -2,8 +2,26 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In this App you can:
 - create new car by input Registration Number of the car and the car's color
+    Registration number is unique. You can not enter the same registration number. 
+    And also form input for registration number and color are mandatory
+    After the new car is create, the list will be updated automaticly with free status,
+    and generate date by default date is today.
+- List Car
+    On the car list will be displayed Registration number, color, status, customer, and a button reserve
+    For reserved car, the status will be "reserved" and for un-reserved car the status will be "free"
+    For un-reserved car, customer can reserve car by click button "reserve"
 - Reserve a car by input your name and choose the date
+    After user click "reserve" button, a modal will be displayed.
+    On the modal, user have to enter customer name and reservation date. 
+    This form is mandatory before user reserve car.
+    After the car is reserved, the status car on the list will be modified become "reserved" 
+    and car's date is modified based on reservation date. Also button "reserve" will be hidden
+    
 - Search car by Registration Number, Color, and Status
+    User can search car from the car list by 3 catogory, they are:
+    - car by registration number
+    - car by color
+    - car by date
 
 ## Available Scripts
 

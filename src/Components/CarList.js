@@ -71,7 +71,7 @@ export default class CarList extends Component {
         if (!this.state.cars)
             return (<p>Loading data</p>)
         return (
-            <div className="table-responsive-sm list-container">
+            <div className="mt-3 table-responsive-sm list-container">
                 <h2 className="display-4">List of Car</h2>
                 <table className="table">
                     <thead>
