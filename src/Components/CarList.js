@@ -76,11 +76,11 @@ export default class CarList extends Component {
                 <table className="table">
                     <thead>
                         <tr>
-                            <td>Registration Number</td>
-                            <td>Color</td>
-                            <td>Status</td>
-                            <td>Customer</td>
-                            <td>Action</td>
+                            <th>Registration Number</th>
+                            <th>Color</th>
+                            <th>Status</th>
+                            <th>Customer</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

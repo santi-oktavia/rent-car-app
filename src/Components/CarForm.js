@@ -28,7 +28,6 @@ export default class CarForm extends Component {
             alert("Please Check your Registration Number or Color");
         } else {
             let isExist = this.checkExistingCar(this.state.reqNum);
-            // console.log(isExist);
             if(isExist == true) {
                 alert("Your Registration Number is already exist");
             } else {
@@ -66,21 +65,17 @@ export default class CarForm extends Component {
             month = today.getMonth() + 1,
             day = today.getDate();
 
-    // console.log(month.length);
-
         if (month < 10) 
             month = '0' + month;
         if (day < 10) 
             day = '0' + day;
 
-        // let date=day+'/'+month+'/'+year;
         let date=year+'-'+month+'-'+day;
 
         return date;
     };
 
     updateList = (index,customer, date) => {
-        console.log(index);
         const cars = Object.assign(this.state.cars); 
         cars[index].status = 'reserved'; 
         cars[index].customer = customer;
